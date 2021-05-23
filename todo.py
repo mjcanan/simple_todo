@@ -31,7 +31,7 @@ def main(argv):
 	f : mark todo as finished
 	d : display todos
 	sq: save and quit
-	q : save and quit
+	q : quit without saving
 ''').lower()
 
 		if command == 'd':
@@ -41,7 +41,12 @@ def main(argv):
 			print("Save and quit.\nGoodbye.")
 			sys.exit(0)
 		elif command == 'q':
-			print("Exit without saving...")
+			save = input('Save before exiting?: ')
+			if save.lower().startswith("y"):
+				saveTodos(data,todos)
+				print("Save and quit.\nGoodbye.")
+			else:
+				print("Exit without saving...")
 			sys.exit(0)
 		elif command == 'a':
 			print("Add a todo!")
